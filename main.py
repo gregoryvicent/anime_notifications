@@ -1,8 +1,10 @@
-from multiprocessing.sharedctypes import Value
 from lib.iterval_ejecution import timer
 
 def main():
-  timer()
+  try:
+    timer()
+  except KeyboardInterrupt:
+    print("\nBye!!!!!!!!")
 
 
 if __name__ == "__main__":

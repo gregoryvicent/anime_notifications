@@ -1,37 +1,39 @@
 import smtplib 
 from email.message import EmailMessage 
 
-email_subject = "Email test from Python" 
-sender_email_address = "gregory.work14@gmail.com" 
-receiver_email_address = "gregory.work14@gmail.com" 
-email_smtp = "smtp.gmail.com" 
-email_password = "bmprtweskttyvxeu" 
 
-# Create an email message object 
-message = EmailMessage() 
+def email(anime_name):
+  email_subject = "%s ya disponible" % anime_name
+  sender_email_address = "gregory.work14@gmail.com" 
+  receiver_email_address = "gregory.work14@gmail.com" 
+  email_smtp = "smtp.gmail.com" 
+  email_password = "bmprtweskttyvxeu" 
 
-# Configure email headers 
-message['Subject'] = email_subject 
-message['From'] = sender_email_address 
-message['To'] = receiver_email_address 
+  # Create an email message object 
+  message = EmailMessage() 
 
-# Set email body text 
-message.set_content("Hello from Python!") 
+  # Configure email headers 
+  message['Subject'] = email_subject 
+  message['From'] = sender_email_address 
+  message['To'] = receiver_email_address 
 
-# Set smtp server and port 
-server = smtplib.SMTP(email_smtp, '587') 
+  # Set email body text 
+  message.set_content("Esta disponible el nuevo capitulo de %s" % anime_name) 
 
-# Identify this client to the SMTP server 
-server.ehlo() 
+  # Set smtp server and port 
+  server = smtplib.SMTP(email_smtp, '587') 
 
-# Secure the SMTP connection 
-server.starttls() 
+  # Identify this client to the SMTP server 
+  server.ehlo() 
 
-# Login to email account 
-server.login(sender_email_address, email_password) 
+  # Secure the SMTP connection 
+  server.starttls() 
 
-# Send email 
-server.send_message(message) 
+  # Login to email account 
+  server.login(sender_email_address, email_password) 
 
-# Close connection to server 
-server.quit()
+  # Send email 
+  server.send_message(message) 
+
+  # Close connection to server 
+  server.quit()
